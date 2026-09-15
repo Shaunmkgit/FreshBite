@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>FreshBite - Food Delivery</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <!-- ========================================
+         NAVIGATION
+    ========================================= -->
+    <header class="navbar">
+
+        <a href="index.html" class="logo">
+            🍊 FreshBite
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="restaurants.html">Restaurants</a>
+            <a href="#offers">Offers</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
+        </nav>
+
+        <div class="nav-buttons">
+
+            <a href="login.html" class="login-btn">
+                Login
+            </a>
+
+            <a href="wishlist.html" class="wishlist-nav-btn">
+                ❤️ Wishlist
+            </a>
+
+            <a href="cart.html" class="cart-btn">
+                🛒 Cart
+                <span id="cart-count">0</span>
+            </a>
+
+        </div>
+
+    </header>
+
+
+    <!-- ========================================
+         HERO
+    ========================================= -->
+    <section class="hero">
+
+        <div class="hero-content">
+
+            <p class="hero-small">
+                🔥 FRESH FOOD. FAST DELIVERY.
+            </p>
+
+            <h1>
+                Delicious food,
+                <span>delivered fresh.</span>
+            </h1>
+
+            <p class="hero-description">
+                Discover your favorite meals from the best restaurants
+                around you and get them delivered straight to your door.
+            </p>
+
+            <div class="search-box">
+
+                <input
+                    type="text"
+                    id="home-search"
+                    placeholder="🔍 Search for food or restaurants..."
+                >
+
+                <button id="home-search-btn">
+                    Search
+                </button>
+
+            </div>
+
+            <a href="restaurants.html" class="hero-button">
+                Explore Restaurants →
+            </a>
+
+        </div>
+
+
+        <div class="hero-image">
+            🍔
+        </div>
+
+    </section>
+
+
+    <!-- ========================================
+         CATEGORIES
+    ========================================= -->
+    <section class="categories">
+
+        <div class="section-heading">
+
+            <p>
+                WHAT ARE YOU CRAVING?
+            </p>
+
+            <h2>
+                Explore Categories
+            </h2>
+
+        </div>
+
+
+        <div class="category-grid">
+
+            <div class="category-card">
+                <div class="category-icon">🍕</div>
+                <h3>Pizza</h3>
+                <p>25+ restaurants</p>
+            </div>
+
+
+            <div class="category-card">
+                <div class="category-icon">🍔</div>
+                <h3>Burgers</h3>
+                <p>18+ restaurants</p>
+            </div>
+
+
+            <div class="category-card">
+                <div class="category-icon">🍜</div>
+                <h3>Asian</h3>
+                <p>15+ restaurants</p>
+            </div>
+
+
+            <div class="category-card">
+                <div class="category-icon">🍛</div>
+                <h3>Indian</h3>
+                <p>30+ restaurants</p>
+            </div>
+
+
+            <div class="category-card">
+                <div class="category-icon">🥗</div>
+                <h3>Healthy</h3>
+                <p>12+ restaurants</p>
+            </div>
+
+
+            <div class="category-card">
+                <div class="category-icon">🍰</div>
+                <h3>Desserts</h3>
+                <p>20+ restaurants</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================
+         FEATURED RESTAURANTS
+    ========================================= -->
+    <section class="featured">
+
+        <div class="section-heading-row">
+
+            <div>
+
+                <p>
+                    TOP PICKS FOR YOU
+                </p>
+
+                <h2>
+                    Popular Restaurants
+                </h2>
+
+            </div>
+
+            <a href="restaurants.html">
+                View all →
+            </a>
+
+        </div>
+
+
+        <div class="restaurant-grid">
+
+            <!-- PIZZA PARADISE -->
+
+            <div class="restaurant-card">
+
+                <div class="restaurant-image pizza-image">
+
+                    🍕
+
+                    <span class="offer-badge">
+                        20% OFF
+                    </span>
+
+                </div>
+
+                <div class="restaurant-info">
+
+                    <h3>
+                        Pizza Paradise
+                    </h3>
+
+                    <p class="cuisine">
+                        🍕 Italian • Pizza
+                    </p>
+
+                    <div class="restaurant-details">
+
+                        <span>
+                            ⭐ 4.8
+                        </span>
+
+                        <span>
+                            🕐 25-30 min
+                        </span>
+
+                        <span>
+                            ₹₹
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- BURGER HOUSE -->
+
+            <div class="restaurant-card">
+
+                <div class="restaurant-image burger-image">
+
+                    🍔
+
+                    <span class="offer-badge">
+                        15% OFF
+                    </span>
+
+                </div>
+
+                <div class="restaurant-info">
+
+                    <h3>
+                        Burger House
+                    </h3>
+
+                    <p class="cuisine">
+                        🍔 American • Burgers
+                    </p>
+
+                    <div class="restaurant-details">
+
+                        <span>
+                            ⭐ 4.7
+                        </span>
+
+                        <span>
+                            🕐 20-25 min
+                        </span>
+
+                        <span>
+                            ₹₹
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- SPICE GARDEN -->
+
+            <div class="restaurant-card">
+
+                <div class="restaurant-image indian-image">
+
+                    🍛
+
+                    <span class="offer-badge">
+                        25% OFF
+                    </span>
+
+                </div>
+
+                <div class="restaurant-info">
+
+                    <h3>
+                        Spice Garden
+                    </h3>
+
+                    <p class="cuisine">
+                        🍛 Indian • North Indian
+                    </p>
+
+                    <div class="restaurant-details">
+
+                        <span>
+                            ⭐ 4.9
+                        </span>
+
+                        <span>
+                            🕐 30-35 min
+                        </span>
+
+                        <span>
+                            ₹₹₹
+                        </span>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- ========================================
+         SPECIAL OFFER
+    ========================================= -->
+    <section
+        class="offer-section"
+        id="offers"
+    >
+
+        <div class="offer-content">
+
+            <p>
+                LIMITED TIME OFFER
+            </p>
+
+            <h2>
+                Get 30% OFF<br>
+                your first order!
+            </h2>
+
+            <p>
+                Use code
+                <strong>FRESH30</strong>
+                at checkout and enjoy your first FreshBite meal.
+            </p>
+
+            <a
+                href="restaurants.html"
+                class="offer-button"
+            >
+                Order Now →
+            </a>
+
+        </div>
+
+        <div class="offer-emoji">
+            🍕
+        </div>
+
+    </section>
+
+
+    <!-- ========================================
+         ABOUT
+    ======================================== -->
+    <section
+        class="simple-section"
+        id="about"
+    >
+
+        <p>
+            OUR STORY
+        </p>
+
+        <h2>
+            Good food brings people together.
+        </h2>
+
+        <p>
+            FreshBite is a modern food delivery platform created to
+            connect hungry customers with delicious meals from
+            their favorite restaurants.
+        </p>
+
+    </section>
+
+
+    <!-- ========================================
+         CONTACT
+    ======================================== -->
+    <section
+        class="simple-section"
+        id="contact"
+    >
+
+        <p>
+            GET IN TOUCH
+        </p>
+
+        <h2>
+            We're here to help.
+        </h2>
+
+        <p>
+            Have a question about your order?
+            Our FreshBite team is always happy to help.
+        </p>
+
+    </section>
+
+
+    <!-- ========================================
+         FOOTER
+    ======================================== -->
+    <footer>
+
+        <div class="footer-content">
+
+            <!-- BRAND -->
+
+            <div>
+
+                <h2>
+                    🍊 FreshBite
+                </h2>
+
+                <p>
+                    Delicious food delivered fresh
+                    to your doorstep.
+                </p>
+
+            </div>
+
+
+            <!-- QUICK LINKS -->
+
+            <div>
+
+                <h3>
+                    Quick Links
+                </h3>
+
+                <a href="index.html">
+                    Home
+                </a>
+
+                <a href="restaurants.html">
+                    Restaurants
+                </a>
+
+                <a href="wishlist.html">
+                    Wishlist
+                </a>
+
+                <a href="cart.html">
+                    Cart
+                </a>
+
+                <a href="#about">
+                    About Us
+                </a>
+
+                <a href="#contact">
+                    Contact
+                </a>
+
+                <a href="login.html">
+                    Login
+                </a>
+
+            </div>
+
+
+            <!-- HELP -->
+
+            <div>
+
+                <h3>
+                    Help
+                </h3>
+
+                <a href="#">
+                    FAQ
+                </a>
+
+                <a href="#">
+                    Privacy Policy
+                </a>
+
+                <a href="#">
+                    Terms
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="copyright">
+
+            © 2026 FreshBite. All rights reserved.
+
+        </div>
+
+    </footer>
+
+
+    <!-- ========================================
+         HOME PAGE JAVASCRIPT
+    ======================================== -->
+    <script>
+
+        // ========================================
+        // UPDATE CART COUNT
+        // ========================================
+
+        function updateCartCount() {
+
+            const cartCount =
+                document.getElementById("cart-count");
+
+            if (!cartCount) {
+                return;
+            }
+
+
+            const cart =
+                JSON.parse(
+                    localStorage.getItem("freshBiteCart")
+                ) || [];
+
+
+            const totalQuantity =
+                cart.reduce(
+                    (total, item) =>
+                        total + item.quantity,
+                    0
+                );
+
+
+            cartCount.textContent =
+                totalQuantity;
+
+        }
+
+
+        // ========================================
+        // HOME SEARCH
+        // ========================================
+
+        const searchButton =
+            document.getElementById("home-search-btn");
+
+        const searchInput =
+            document.getElementById("home-search");
+
+
+        if (searchButton && searchInput) {
+
+            searchButton.addEventListener(
+                "click",
+                function() {
+
+                    const searchTerm =
+                        searchInput.value.trim();
+
+
+                    if (searchTerm === "") {
+
+                        window.location.href =
+                            "restaurants.html";
+
+                        return;
+
+                    }
+
+
+                    // Save search term so the
+                    // restaurant page can use it later.
+
+                    localStorage.setItem(
+                        "freshBiteSearch",
+                        searchTerm
+                    );
+
+
+                    window.location.href =
+                        "restaurants.html";
+
+                }
+            );
+
+
+            searchInput.addEventListener(
+                "keypress",
+                function(event) {
+
+                    if (event.key === "Enter") {
+
+                        searchButton.click();
+
+                    }
+
+                }
+            );
+
+        }
+
+
+        // ========================================
+        // INITIALIZE
+        // ========================================
+
+        updateCartCount();
+
+    </script>
+
+</body>
+
+</html>

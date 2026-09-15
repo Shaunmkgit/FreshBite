@@ -1,0 +1,640 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Checkout | FreshBite</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #FFF8F0;
+            color: #2D1B12;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #eee;
+            padding: 16px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #FF6B35;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 22px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+
+        .cart-link {
+            background: #FF6B35;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 20px;
+        }
+
+        .cart-count {
+            background: white;
+            color: #FF6B35;
+            padding: 2px 7px;
+            border-radius: 50%;
+            margin-left: 4px;
+            font-size: 12px;
+        }
+
+        .page-title {
+            text-align: center;
+            padding: 45px 20px 25px;
+        }
+
+        .page-title h1 {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #777;
+        }
+
+        .checkout-container {
+            max-width: 1100px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: 1.5fr 1fr;
+            gap: 30px;
+        }
+
+        .checkout-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            box-shadow: 0 5px 20px rgba(45, 27, 18, 0.08);
+            margin-bottom: 20px;
+        }
+
+        .checkout-card h2 {
+            margin-bottom: 20px;
+            font-size: 22px;
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 16px;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+
+        .form-group.full {
+            grid-column: 1 / -1;
+        }
+
+        label {
+            font-weight: 600;
+            font-size: 14px;
+        }
+
+        input,
+        select {
+            width: 100%;
+            padding: 12px 13px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 15px;
+            outline: none;
+            background: white;
+        }
+
+        input:focus,
+        select:focus {
+            border-color: #FF6B35;
+        }
+
+        .payment-options {
+            display: grid;
+            gap: 12px;
+        }
+
+        .payment-option {
+            border: 1px solid #ddd;
+            padding: 14px;
+            border-radius: 10px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .payment-option:hover {
+            border-color: #FF6B35;
+        }
+
+        .payment-option input {
+            width: auto;
+        }
+
+        .coupon-box {
+            background: #FFF4EC;
+            border: 1px dashed #FF6B35;
+            border-radius: 12px;
+            padding: 18px;
+        }
+
+        .coupon-box h3 {
+            margin-bottom: 5px;
+        }
+
+        .coupon-help {
+            color: #777;
+            font-size: 13px;
+            margin-bottom: 12px;
+        }
+
+        .coupon-row {
+            display: flex;
+            gap: 10px;
+        }
+
+        .coupon-row input {
+            flex: 1;
+        }
+
+        button {
+            border: none;
+            cursor: pointer;
+            font-size: 15px;
+            font-weight: 600;
+        }
+
+        .apply-btn {
+            background: #FF6B35;
+            color: white;
+            padding: 12px 20px;
+            border-radius: 8px;
+        }
+
+        .apply-btn:hover {
+            background: #e95725;
+        }
+
+        .remove-btn {
+            background: #eee;
+            color: #2D1B12;
+            padding: 10px 15px;
+            border-radius: 8px;
+            margin-top: 10px;
+        }
+
+        .coupon-message {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .success {
+            color: #188038;
+        }
+
+        .error {
+            color: #d93025;
+        }
+
+        .summary-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            margin-bottom: 12px;
+        }
+
+        .summary-item span:last-child {
+            font-weight: 600;
+        }
+
+        .summary-divider {
+            border: 0;
+            border-top: 1px solid #eee;
+            margin: 18px 0;
+        }
+
+        .discount-row {
+            color: #188038;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 21px;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .place-order-btn {
+            width: 100%;
+            background: #FF6B35;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 20px;
+            font-size: 17px;
+        }
+
+        .place-order-btn:hover {
+            background: #e95725;
+        }
+
+        .place-order-btn:disabled {
+            background: #aaa;
+            cursor: not-allowed;
+        }
+
+        .empty-message {
+            text-align: center;
+            padding: 50px 20px;
+            background: white;
+            border-radius: 16px;
+        }
+
+        .confirmation {
+            display: none;
+            text-align: center;
+        }
+
+        .confirmation-icon {
+            font-size: 60px;
+            margin-bottom: 10px;
+        }
+
+        .confirmation h2 {
+            color: #188038;
+        }
+
+        .order-id {
+            font-size: 22px;
+            font-weight: bold;
+            color: #FF6B35;
+            margin: 15px 0;
+        }
+
+        .confirmation-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .confirmation-actions a {
+            padding: 12px 18px;
+            border-radius: 8px;
+            font-weight: 600;
+        }
+
+        .primary-link {
+            background: #FF6B35;
+            color: white;
+        }
+
+        .secondary-link {
+            background: #eee;
+        }
+
+        footer {
+            background: #2D1B12;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        @media (max-width: 800px) {
+            .checkout-container {
+                grid-template-columns: 1fr;
+            }
+
+            .nav-links {
+                gap: 10px;
+                font-size: 14px;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .page-title h1 {
+                font-size: 30px;
+            }
+
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .form-group.full {
+                grid-column: auto;
+            }
+
+            .coupon-row {
+                flex-direction: column;
+            }
+
+            .apply-btn {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+        <a href="index.html" class="logo">🍴 FreshBite</a>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="restaurants.html">Restaurants</a>
+            <a href="wishlist.html">Wishlist</a>
+            <a href="account.html">Account</a>
+            <a href="cart.html" class="cart-link">
+                🛒 Cart <span id="cart-count" class="cart-count">0</span>
+            </a>
+        </div>
+    </nav>
+</header>
+
+<section class="page-title">
+    <h1>Checkout</h1>
+    <p>Complete your order and enjoy your meal 🍽️</p>
+</section>
+
+<main class="checkout-container">
+
+    <section>
+
+        <form id="orderForm">
+
+            <div class="checkout-card">
+                <h2>📍 Delivery Information</h2>
+
+                <div class="form-grid">
+
+                    <div class="form-group">
+                        <label for="fullName">Full Name</label>
+                        <input type="text" id="fullName" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="phone">Phone Number</label>
+                        <input
+                            type="tel"
+                            id="phone"
+                            required
+                            pattern="[0-9]{10}"
+                            placeholder="10 digit number"
+                        >
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="house">House / Building</label>
+                        <input type="text" id="house" required>
+                    </div>
+
+                    <div class="form-group full">
+                        <label for="street">Street / Area</label>
+                        <input type="text" id="street" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="city">City</label>
+                        <input type="text" id="city" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="state">State</label>
+                        <input type="text" id="state" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="pin">PIN Code</label>
+                        <input
+                            type="text"
+                            id="pin"
+                            required
+                            pattern="[0-9]{6}"
+                            placeholder="6 digit PIN"
+                        >
+                    </div>
+
+                    <div class="form-group">
+                        <label for="deliveryTime">Delivery Time</label>
+
+                        <select id="deliveryTime" required>
+                            <option value="ASAP - 30-40 min">
+                                ASAP - 30-40 min
+                            </option>
+                            <option value="45 minutes">
+                                In 45 minutes
+                            </option>
+                            <option value="60 minutes">
+                                In 60 minutes
+                            </option>
+                            <option value="90 minutes">
+                                In 90 minutes
+                            </option>
+                        </select>
+                    </div>
+
+                </div>
+            </div>
+
+            <div class="checkout-card">
+                <h2>💳 Payment Method</h2>
+
+                <div class="payment-options">
+
+                    <label class="payment-option">
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="Cash on Delivery"
+                            checked
+                        >
+                        💵 Cash on Delivery
+                    </label>
+
+                    <label class="payment-option">
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="UPI"
+                        >
+                        📱 UPI
+                    </label>
+
+                    <label class="payment-option">
+                        <input
+                            type="radio"
+                            name="paymentMethod"
+                            value="Credit/Debit Card"
+                        >
+                        💳 Credit/Debit Card
+                    </label>
+
+                </div>
+            </div>
+
+            <div class="checkout-card">
+                <h2>🎟️ Apply Coupon</h2>
+
+                <div class="coupon-box">
+
+                    <h3>Save more on your order</h3>
+
+                    <p class="coupon-help">
+                        Try <strong>WELCOME10</strong> or <strong>FRESH20</strong>
+                    </p>
+
+                    <div class="coupon-row">
+                        <input
+                            type="text"
+                            id="couponCode"
+                            placeholder="Enter coupon code"
+                            autocomplete="off"
+                        >
+
+                        <button
+                            type="button"
+                            class="apply-btn"
+                            id="applyCouponBtn"
+                        >
+                            Apply
+                        </button>
+                    </div>
+
+                    <div id="couponMessage" class="coupon-message"></div>
+
+                    <button
+                        type="button"
+                        class="remove-btn"
+                        id="removeCouponBtn"
+                        style="display:none;"
+                    >
+                        Remove Coupon
+                    </button>
+
+                </div>
+            </div>
+
+        </form>
+
+    </section>
+
+    <aside>
+
+        <div class="checkout-card">
+            <h2>🧾 Order Summary</h2>
+
+            <div id="orderSummary">
+                <!-- Generated by JavaScript -->
+            </div>
+
+            <button
+                type="submit"
+                form="orderForm"
+                class="place-order-btn"
+                id="placeOrderBtn"
+            >
+                Place Order
+            </button>
+        </div>
+
+    </aside>
+
+</main>
+
+<div
+    id="confirmation"
+    class="confirmation checkout-card"
+    style="max-width:700px;margin:30px auto 60px;"
+>
+    <div class="confirmation-icon">🎉</div>
+
+    <h2>Order Placed Successfully!</h2>
+
+    <p>Your FreshBite order has been confirmed.</p>
+
+    <div class="order-id" id="confirmationOrderId"></div>
+
+    <p id="confirmationTotal"></p>
+
+    <div class="confirmation-actions">
+        <a href="tracking.html" class="primary-link">
+            Track Order
+        </a>
+
+        <a href="restaurants.html" class="secondary-link">
+            Order More Food
+        </a>
+
+        <a href="account.html" class="secondary-link">
+            My Account
+        </a>
+    </div>
+</div>
+
+<footer>
+    <p>© 2026 FreshBite. Delicious food, delivered with love. ❤️</p>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/checkout.js"></script>
+
+</body>
+</html>

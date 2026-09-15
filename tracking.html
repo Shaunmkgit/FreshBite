@@ -1,0 +1,418 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Track Order - FreshBite</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff8f0;
+            color: #2d1b12;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid #eee;
+            padding: 18px 6%;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #ff6b35;
+        }
+
+        .cart-link {
+            background: #ff6b35;
+            color: white;
+            padding: 9px 14px;
+            border-radius: 20px;
+        }
+
+        main {
+            max-width: 1000px;
+            margin: 40px auto;
+            padding: 0 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .page-title h1 {
+            font-size: 36px;
+            margin-bottom: 8px;
+        }
+
+        .page-title p {
+            color: #777;
+        }
+
+        .tracking-card,
+        .order-card {
+            background: white;
+            border-radius: 18px;
+            padding: 28px;
+            margin-bottom: 25px;
+            box-shadow: 0 5px 20px rgba(45, 27, 18, 0.08);
+        }
+
+        .order-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            padding-bottom: 18px;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-id {
+            font-weight: bold;
+            font-size: 18px;
+        }
+
+        .status-badge {
+            background: #fff0e9;
+            color: #ff6b35;
+            padding: 8px 14px;
+            border-radius: 20px;
+            font-weight: bold;
+        }
+
+        /* Progress tracker */
+
+        .progress-wrapper {
+            margin: 35px 0;
+        }
+
+        .progress-bar {
+            height: 6px;
+            background: #eee;
+            border-radius: 10px;
+            position: relative;
+            margin: 0 7%;
+        }
+
+        .progress-fill {
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0%;
+            background: #ff6b35;
+            border-radius: 10px;
+            transition: width 0.5s ease;
+        }
+
+        .progress-steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            position: relative;
+            margin-top: -18px;
+        }
+
+        .step {
+            text-align: center;
+            position: relative;
+        }
+
+        .step-circle {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            background: #eee;
+            color: #888;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: auto;
+            font-weight: bold;
+            border: 4px solid white;
+            position: relative;
+            z-index: 2;
+        }
+
+        .step.active .step-circle,
+        .step.completed .step-circle {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .step.completed .step-circle {
+            background: #2d1b12;
+        }
+
+        .step-label {
+            margin-top: 10px;
+            font-size: 14px;
+            font-weight: bold;
+        }
+
+        .step-time {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .current-status {
+            text-align: center;
+            background: #fff8f0;
+            padding: 18px;
+            border-radius: 12px;
+            margin: 25px 0;
+        }
+
+        .current-status h2 {
+            color: #ff6b35;
+            margin-bottom: 7px;
+        }
+
+        .tracking-actions {
+            display: flex;
+            justify-content: center;
+            gap: 12px;
+            flex-wrap: wrap;
+            margin-top: 25px;
+        }
+
+        button,
+        .button {
+            border: none;
+            cursor: pointer;
+            padding: 13px 22px;
+            border-radius: 25px;
+            font-size: 15px;
+            font-weight: bold;
+        }
+
+        .primary-btn {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .primary-btn:hover {
+            background: #e85b2a;
+        }
+
+        .secondary-btn {
+            background: #2d1b12;
+            color: white;
+        }
+
+        button:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 18px;
+            margin-top: 20px;
+        }
+
+        .info-box {
+            background: #fff8f0;
+            padding: 18px;
+            border-radius: 12px;
+        }
+
+        .info-box h3 {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 7px;
+        }
+
+        .info-box p {
+            font-weight: 600;
+            line-height: 1.5;
+        }
+
+        .items-title {
+            margin-bottom: 15px;
+        }
+
+        .order-item {
+            display: flex;
+            justify-content: space-between;
+            gap: 15px;
+            padding: 13px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .order-item:last-child {
+            border-bottom: none;
+        }
+
+        .item-name {
+            font-weight: bold;
+        }
+
+        .item-quantity {
+            color: #777;
+            margin-left: 5px;
+        }
+
+        .item-price {
+            font-weight: bold;
+        }
+
+        .total-row {
+            display: flex;
+            justify-content: space-between;
+            font-size: 20px;
+            font-weight: bold;
+            padding-top: 18px;
+            margin-top: 10px;
+            border-top: 2px solid #eee;
+        }
+
+        .empty-state {
+            text-align: center;
+            background: white;
+            padding: 50px 25px;
+            border-radius: 18px;
+            box-shadow: 0 5px 20px rgba(45, 27, 18, 0.08);
+        }
+
+        .empty-state .emoji {
+            font-size: 55px;
+            margin-bottom: 15px;
+        }
+
+        .empty-state h2 {
+            margin-bottom: 10px;
+        }
+
+        .empty-state p {
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 700px) {
+            header {
+                padding: 15px 4%;
+            }
+
+            .navbar {
+                flex-direction: column;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            main {
+                margin: 25px auto;
+            }
+
+            .page-title h1 {
+                font-size: 28px;
+            }
+
+            .tracking-card,
+            .order-card {
+                padding: 20px;
+            }
+
+            .progress-bar {
+                margin: 0 8%;
+            }
+
+            .step-label {
+                font-size: 11px;
+            }
+
+            .step-time {
+                display: none;
+            }
+
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .order-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="navbar">
+        <a href="index.html" class="logo">🍽️ FreshBite</a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="restaurants.html">Restaurants</a>
+            <a href="offers.html">Offers</a>
+            <a href="wishlist.html">Wishlist</a>
+            <a href="cart.html" class="cart-link">
+                🛒 Cart (<span id="cart-count">0</span>)
+            </a>
+        </nav>
+    </div>
+</header>
+
+<main>
+
+    <div class="page-title">
+        <h1>📦 Track Your Order</h1>
+        <p>Follow your FreshBite order from kitchen to doorstep.</p>
+    </div>
+
+    <div id="tracking-content"></div>
+
+</main>
+
+<script src="js/data.js"></script>
+<script src="js/tracking.js"></script>
+
+</body>
+</html>

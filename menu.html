@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Menu - FreshBite</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .menu-page {
+            background: #fff8f0;
+            min-height: 100vh;
+        }
+
+        .menu-header {
+            max-width: 1100px;
+            margin: 35px auto 25px;
+            padding: 0 20px;
+        }
+
+        .back-link {
+            color: #ff6b35;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .restaurant-info {
+            margin-top: 20px;
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(45,27,18,0.08);
+        }
+
+        .restaurant-info-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .restaurant-info-content {
+            padding: 20px;
+        }
+
+        .restaurant-info-content h1 {
+            margin: 0 0 8px;
+            color: #2d1b12;
+        }
+
+        .restaurant-info-content p {
+            color: #777;
+            margin: 6px 0;
+        }
+
+        .menu-section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px 60px;
+        }
+
+        .menu-heading {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            gap: 15px;
+        }
+
+        .menu-heading h2 {
+            color: #2d1b12;
+        }
+
+        .dietary-filters {
+            display: flex;
+            gap: 7px;
+        }
+
+        .dietary-filter {
+            border: 1px solid #ddd;
+            background: white;
+            padding: 8px 13px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .dietary-filter.active {
+            background: #ff6b35;
+            color: white;
+            border-color: #ff6b35;
+        }
+
+        .menu-items {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(45,27,18,0.08);
+        }
+
+        .menu-image-wrapper {
+            position: relative;
+        }
+
+        .menu-card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .menu-dietary {
+            position: absolute;
+            left: 10px;
+            bottom: 10px;
+            background: white;
+            padding: 5px 8px;
+            border-radius: 5px;
+            font-size: 11px;
+            font-weight: bold;
+        }
+
+        .wishlist-menu-btn {
+            position: absolute;
+            right: 10px;
+            top: 10px;
+            width: 36px;
+            height: 36px;
+            border: none;
+            border-radius: 50%;
+            background: white;
+            cursor: pointer;
+            font-size: 18px;
+        }
+
+        .menu-card-body {
+            padding: 17px;
+        }
+
+        .menu-category {
+            color: #ff6b35;
+            font-size: 12px;
+            font-weight: bold;
+            text-transform: uppercase;
+        }
+
+        .menu-card-body h3 {
+            color: #2d1b12;
+            margin: 6px 0;
+        }
+
+        .menu-description {
+            color: #777;
+            font-size: 14px;
+            line-height: 1.5;
+            min-height: 42px;
+        }
+
+        .menu-bottom {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-top: 15px;
+        }
+
+        .menu-price {
+            font-size: 19px;
+            font-weight: bold;
+            color: #2d1b12;
+        }
+
+        .menu-buttons {
+            display: flex;
+            gap: 6px;
+        }
+
+        .details-btn {
+            color: #ff6b35;
+            border: 1px solid #ff6b35;
+            padding: 8px 10px;
+            border-radius: 7px;
+            text-decoration: none;
+            font-size: 12px;
+        }
+
+        .add-cart-btn {
+            border: none;
+            background: #ff6b35;
+            color: white;
+            padding: 8px 11px;
+            border-radius: 7px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+
+        @media (max-width: 850px) {
+            .menu-items {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .menu-items {
+                grid-template-columns: 1fr;
+            }
+
+            .menu-heading {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+        }
+    </style>
+</head>
+
+<body class="menu-page">
+
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">Fresh<span>Bite</span></a>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="restaurants.html" class="active">Restaurants</a></li>
+            <li><a href="index.html#offers">Offers</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="wishlist.html">❤️ Wishlist</a></li>
+            <li>
+                <a href="cart.html">
+                    🛒 Cart <span id="cart-count">0</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<section class="menu-header">
+
+    <a href="restaurants.html" class="back-link">
+        ← Back to Restaurants
+    </a>
+
+    <div id="restaurant-info" class="restaurant-info"></div>
+
+</section>
+
+<section class="menu-section">
+
+    <div class="menu-heading">
+
+        <h2>Menu</h2>
+
+        <div class="dietary-filters">
+
+            <button
+                class="dietary-filter active"
+                data-dietary="all"
+            >
+                All
+            </button>
+
+            <button
+                class="dietary-filter"
+                data-dietary="veg"
+            >
+                🥬 Veg
+            </button>
+
+            <button
+                class="dietary-filter"
+                data-dietary="non-veg"
+            >
+                🍗 Non-Veg
+            </button>
+
+        </div>
+
+    </div>
+
+    <div id="menu-items" class="menu-items"></div>
+
+</section>
+
+<script src="js/data.js"></script>
+<script src="js/menu.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,524 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>My Account | FreshBite</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* =========================================
+           ACCOUNT PAGE
+        ========================================= */
+
+        .account-page {
+            min-height: 70vh;
+            padding: 50px 20px 80px;
+            background: #fff8f0;
+        }
+
+        .account-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .account-heading {
+            margin-bottom: 30px;
+        }
+
+        .account-heading h1 {
+            margin: 0 0 8px;
+            color: #2d1b12;
+            font-size: 38px;
+        }
+
+        .account-heading p {
+            margin: 0;
+            color: #75665d;
+        }
+
+        /* PROFILE */
+
+        .profile-card {
+            display: grid;
+            grid-template-columns: auto 1fr auto;
+            align-items: center;
+            gap: 22px;
+            margin-bottom: 30px;
+            padding: 28px;
+            background: white;
+            border-radius: 22px;
+            box-shadow: 0 8px 25px rgba(45, 27, 18, 0.08);
+        }
+
+        .profile-avatar {
+            width: 85px;
+            height: 85px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            background: #ff6b35;
+            color: white;
+            font-size: 34px;
+            font-weight: 800;
+        }
+
+        .profile-info h2 {
+            margin: 0 0 7px;
+            color: #2d1b12;
+            font-size: 25px;
+        }
+
+        .profile-info p {
+            margin: 4px 0;
+            color: #75665d;
+            font-size: 14px;
+        }
+
+        .logout-button {
+            padding: 11px 18px;
+            border: 1px solid #e6d7ce;
+            border-radius: 10px;
+            background: white;
+            color: #b64b3a;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .logout-button:hover {
+            background: #fff0ed;
+        }
+
+        /* QUICK LINKS */
+
+        .account-links {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin-bottom: 35px;
+        }
+
+        .account-link-card {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            padding: 20px;
+            border-radius: 16px;
+            background: white;
+            color: #2d1b12;
+            text-decoration: none;
+            box-shadow: 0 5px 18px rgba(45, 27, 18, 0.07);
+            transition: 0.2s ease;
+        }
+
+        .account-link-card:hover {
+            transform: translateY(-3px);
+            color: #ff6b35;
+        }
+
+        .account-link-icon {
+            width: 45px;
+            height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            background: #fff0e5;
+            font-size: 22px;
+        }
+
+        .account-link-text strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .account-link-text span {
+            color: #75665d;
+            font-size: 12px;
+        }
+
+        /* ORDERS */
+
+        .orders-section {
+            margin-top: 10px;
+        }
+
+        .section-title {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .section-title h2 {
+            margin: 0;
+            color: #2d1b12;
+            font-size: 26px;
+        }
+
+        .orders-count {
+            color: #75665d;
+            font-size: 14px;
+        }
+
+        .orders-list {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .order-card {
+            padding: 22px;
+            border-radius: 18px;
+            background: white;
+            box-shadow: 0 5px 20px rgba(45, 27, 18, 0.08);
+        }
+
+        .order-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #eee3dc;
+        }
+
+        .order-id {
+            margin: 0 0 5px;
+            color: #2d1b12;
+            font-size: 17px;
+            font-weight: 800;
+        }
+
+        .order-date {
+            margin: 0;
+            color: #75665d;
+            font-size: 13px;
+        }
+
+        .order-status {
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: #eaf8ed;
+            color: #218739;
+            font-size: 12px;
+            font-weight: 700;
+        }
+
+        .order-middle {
+            display: flex;
+            justify-content: space-between;
+            gap: 20px;
+            padding: 17px 0;
+        }
+
+        .order-items {
+            flex: 1;
+        }
+
+        .order-items-title {
+            margin-bottom: 8px;
+            color: #2d1b12;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .order-item-line {
+            margin-bottom: 4px;
+            color: #75665d;
+            font-size: 13px;
+        }
+
+        .order-total {
+            min-width: 100px;
+            text-align: right;
+        }
+
+        .order-total span {
+            display: block;
+            margin-bottom: 4px;
+            color: #75665d;
+            font-size: 12px;
+        }
+
+        .order-total strong {
+            color: #2d1b12;
+            font-size: 20px;
+        }
+
+        .order-bottom {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 15px;
+        }
+
+        .payment-info {
+            color: #75665d;
+            font-size: 13px;
+        }
+
+        .track-order-button {
+            display: inline-block;
+            padding: 10px 16px;
+            border-radius: 10px;
+            background: #ff6b35;
+            color: white;
+            text-decoration: none;
+            font-size: 13px;
+            font-weight: 700;
+        }
+
+        .track-order-button:hover {
+            background: #e95725;
+        }
+
+        /* EMPTY ORDERS */
+
+        .empty-orders {
+            padding: 65px 25px;
+            border-radius: 20px;
+            background: white;
+            text-align: center;
+            box-shadow: 0 7px 22px rgba(45, 27, 18, 0.07);
+        }
+
+        .empty-orders-icon {
+            margin-bottom: 12px;
+            font-size: 65px;
+        }
+
+        .empty-orders h3 {
+            margin: 0 0 8px;
+            color: #2d1b12;
+            font-size: 23px;
+        }
+
+        .empty-orders p {
+            max-width: 450px;
+            margin: 0 auto 22px;
+            color: #75665d;
+            line-height: 1.6;
+        }
+
+        .browse-button {
+            display: inline-block;
+            padding: 12px 20px;
+            border-radius: 10px;
+            background: #ff6b35;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        .browse-button:hover {
+            background: #e95725;
+        }
+
+        /* LOGIN REQUIRED */
+
+        .login-required {
+            max-width: 600px;
+            margin: 60px auto;
+            padding: 55px 30px;
+            border-radius: 22px;
+            background: white;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(45, 27, 18, 0.08);
+        }
+
+        .login-required-icon {
+            margin-bottom: 15px;
+            font-size: 65px;
+        }
+
+        .login-required h2 {
+            margin: 0 0 10px;
+            color: #2d1b12;
+        }
+
+        .login-required p {
+            margin: 0 auto 25px;
+            color: #75665d;
+            line-height: 1.6;
+        }
+
+        .login-button {
+            display: inline-block;
+            padding: 13px 25px;
+            border-radius: 11px;
+            background: #ff6b35;
+            color: white;
+            text-decoration: none;
+            font-weight: 700;
+        }
+
+        /* RESPONSIVE */
+
+        @media (max-width: 800px) {
+            .profile-card {
+                grid-template-columns: auto 1fr;
+            }
+
+            .logout-button {
+                grid-column: 1 / -1;
+                width: 100%;
+            }
+
+            .account-links {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 600px) {
+            .account-page {
+                padding: 35px 15px 60px;
+            }
+
+            .account-heading h1 {
+                font-size: 30px;
+            }
+
+            .profile-card {
+                padding: 20px;
+            }
+
+            .profile-avatar {
+                width: 65px;
+                height: 65px;
+                font-size: 26px;
+            }
+
+            .profile-info h2 {
+                font-size: 20px;
+            }
+
+            .order-top,
+            .order-bottom {
+                align-items: flex-start;
+                flex-direction: column;
+            }
+
+            .order-middle {
+                flex-direction: column;
+            }
+
+            .order-total {
+                text-align: left;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="navbar">
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                <span>🍽️</span>
+                FreshBite
+            </a>
+
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="restaurants.html">Restaurants</a>
+                <a href="index.html#offers">Offers</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="account.html">Account</a>
+                <a href="wishlist.html">❤️ Wishlist</a>
+
+                <a href="cart.html" class="cart-link">
+                    🛒 Cart
+                    <span id="cart-count" class="cart-count">0</span>
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- ACCOUNT -->
+    <main class="account-page">
+
+        <div class="account-wrapper">
+
+            <div class="account-heading">
+                <h1>My Account 👋</h1>
+                <p>Manage your profile and view your FreshBite orders.</p>
+            </div>
+
+            <div id="account-container">
+
+                <div class="login-required">
+                    <div class="login-required-icon">
+                        ⏳
+                    </div>
+
+                    <h2>
+                        Loading your account...
+                    </h2>
+
+                    <p>
+                        Please wait.
+                    </p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-section">
+                <h3>🍽️ FreshBite</h3>
+
+                <p>
+                    Delicious food from your favourite restaurants,
+                    delivered fresh to your doorstep.
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+
+                <a href="index.html">Home</a>
+                <a href="restaurants.html">Restaurants</a>
+                <a href="wishlist.html">Wishlist</a>
+                <a href="cart.html">Cart</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Help</h3>
+
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#contact">Contact Us</a>
+                <a href="login.html">Login</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>
+                © 2026 FreshBite. All rights reserved.
+            </p>
+        </div>
+
+    </footer>
+
+
+    <script src="js/account.js"></script>
+
+</body>
+</html>

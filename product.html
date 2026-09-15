@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Food Details | FreshBite</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        /* =========================================
+           PRODUCT PAGE
+        ========================================= */
+
+        .product-page {
+            min-height: 70vh;
+            padding: 50px 20px 80px;
+            background: #fff8f0;
+        }
+
+        .product-wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .back-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 25px;
+            padding: 10px 16px;
+            border-radius: 10px;
+            background: white;
+            color: #2d1b12;
+            text-decoration: none;
+            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(45, 27, 18, 0.08);
+            transition: 0.2s ease;
+        }
+
+        .back-button:hover {
+            transform: translateY(-2px);
+            color: #ff6b35;
+        }
+
+        .product-card {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            background: white;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 35px rgba(45, 27, 18, 0.12);
+        }
+
+        .product-image-section {
+            min-height: 500px;
+            position: relative;
+            background: linear-gradient(135deg, #fff0e5, #ffe0cc);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .product-image-fallback {
+            width: 100%;
+            height: 100%;
+            min-height: 500px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 150px;
+        }
+
+        .product-discount {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            padding: 9px 14px;
+            border-radius: 20px;
+            background: #ff6b35;
+            color: white;
+            font-size: 13px;
+            font-weight: 700;
+            z-index: 2;
+        }
+
+        .product-info {
+            padding: 45px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .restaurant-name {
+            margin-bottom: 10px;
+            color: #ff6b35;
+            font-size: 15px;
+            font-weight: 700;
+        }
+
+        .product-title {
+            margin: 0 0 15px;
+            color: #2d1b12;
+            font-size: 38px;
+            line-height: 1.15;
+        }
+
+        .product-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 22px;
+        }
+
+        .meta-tag {
+            padding: 7px 12px;
+            border-radius: 20px;
+            background: #fff3eb;
+            color: #2d1b12;
+            font-size: 13px;
+            font-weight: 600;
+        }
+
+        .meta-tag.veg {
+            color: #218739;
+            background: #eaf8ed;
+        }
+
+        .meta-tag.non-veg {
+            color: #c43d2f;
+            background: #fff0ee;
+        }
+
+        .product-description {
+            margin: 0 0 25px;
+            color: #6f625b;
+            font-size: 16px;
+            line-height: 1.7;
+        }
+
+        .product-price {
+            margin-bottom: 25px;
+            color: #2d1b12;
+            font-size: 32px;
+            font-weight: 800;
+        }
+
+        .quantity-section {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+
+        .quantity-label {
+            color: #2d1b12;
+            font-weight: 700;
+        }
+
+        .quantity-control {
+            display: flex;
+            align-items: center;
+            border: 1px solid #eaded5;
+            border-radius: 12px;
+            overflow: hidden;
+            background: white;
+        }
+
+        .quantity-button {
+            width: 42px;
+            height: 42px;
+            border: none;
+            background: #fff8f0;
+            color: #ff6b35;
+            font-size: 22px;
+            font-weight: 700;
+            cursor: pointer;
+        }
+
+        .quantity-button:hover {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .quantity-value {
+            min-width: 45px;
+            text-align: center;
+            font-weight: 700;
+            color: #2d1b12;
+        }
+
+        .product-actions {
+            display: flex;
+            gap: 12px;
+        }
+
+        .add-cart-button {
+            flex: 1;
+            border: none;
+            border-radius: 12px;
+            padding: 15px 20px;
+            background: #ff6b35;
+            color: white;
+            font-size: 16px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .add-cart-button:hover {
+            background: #e95725;
+            transform: translateY(-2px);
+        }
+
+        .wishlist-button {
+            width: 54px;
+            border: 2px solid #ff6b35;
+            border-radius: 12px;
+            background: white;
+            color: #ff6b35;
+            font-size: 24px;
+            cursor: pointer;
+            transition: 0.2s ease;
+        }
+
+        .wishlist-button:hover,
+        .wishlist-button.active {
+            background: #ff6b35;
+            color: white;
+        }
+
+        .restaurant-link {
+            display: inline-block;
+            margin-top: 22px;
+            color: #ff6b35;
+            font-size: 14px;
+            font-weight: 700;
+            text-decoration: none;
+        }
+
+        .restaurant-link:hover {
+            text-decoration: underline;
+        }
+
+        .loading-message,
+        .error-message {
+            max-width: 700px;
+            margin: 80px auto;
+            padding: 50px 30px;
+            border-radius: 20px;
+            background: white;
+            text-align: center;
+            box-shadow: 0 8px 25px rgba(45, 27, 18, 0.08);
+        }
+
+        .error-message h2 {
+            margin-bottom: 10px;
+            color: #2d1b12;
+        }
+
+        .error-message p {
+            margin-bottom: 20px;
+            color: #6f625b;
+        }
+
+        .toast {
+            position: fixed;
+            right: 25px;
+            bottom: 25px;
+            z-index: 9999;
+            padding: 14px 20px;
+            border-radius: 12px;
+            background: #2d1b12;
+            color: white;
+            font-size: 14px;
+            font-weight: 600;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            transform: translateY(100px);
+            opacity: 0;
+            transition: 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateY(0);
+            opacity: 1;
+        }
+
+        /* Mobile */
+        @media (max-width: 800px) {
+            .product-card {
+                grid-template-columns: 1fr;
+            }
+
+            .product-image-section,
+            .product-image,
+            .product-image-fallback {
+                min-height: 350px;
+            }
+
+            .product-info {
+                padding: 30px 25px;
+            }
+
+            .product-title {
+                font-size: 30px;
+            }
+        }
+
+        @media (max-width: 500px) {
+            .product-page {
+                padding: 30px 15px 60px;
+            }
+
+            .product-info {
+                padding: 25px 20px;
+            }
+
+            .product-image-section,
+            .product-image,
+            .product-image-fallback {
+                min-height: 280px;
+            }
+
+            .product-image-fallback {
+                font-size: 100px;
+            }
+
+            .product-actions {
+                flex-direction: row;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- HEADER -->
+    <header class="navbar">
+        <div class="nav-container">
+
+            <a href="index.html" class="logo">
+                <span>🍽️</span>
+                FreshBite
+            </a>
+
+            <nav class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="restaurants.html">Restaurants</a>
+                <a href="index.html#offers">Offers</a>
+                <a href="index.html#about">About</a>
+                <a href="index.html#contact">Contact</a>
+                <a href="login.html">Login</a>
+                <a href="wishlist.html">❤️ Wishlist</a>
+
+                <a href="cart.html" class="cart-link">
+                    🛒 Cart
+                    <span id="cart-count" class="cart-count">0</span>
+                </a>
+            </nav>
+
+        </div>
+    </header>
+
+
+    <!-- PRODUCT SECTION -->
+    <main class="product-page">
+
+        <div class="product-wrapper">
+
+            <a href="javascript:history.back()" class="back-button">
+                ← Back
+            </a>
+
+            <div id="product-container">
+
+                <div class="loading-message">
+                    <h2>Loading food details...</h2>
+                    <p>Please wait...</p>
+                </div>
+
+            </div>
+
+        </div>
+
+    </main>
+
+
+    <!-- FOOTER -->
+    <footer class="footer">
+
+        <div class="footer-container">
+
+            <div class="footer-section">
+                <h3>🍽️ FreshBite</h3>
+                <p>
+                    Delicious food from your favourite restaurants,
+                    delivered fresh to your doorstep.
+                </p>
+            </div>
+
+            <div class="footer-section">
+                <h3>Quick Links</h3>
+                <a href="index.html">Home</a>
+                <a href="restaurants.html">Restaurants</a>
+                <a href="wishlist.html">Wishlist</a>
+                <a href="cart.html">Cart</a>
+            </div>
+
+            <div class="footer-section">
+                <h3>Help</h3>
+                <a href="index.html#about">About Us</a>
+                <a href="index.html#contact">Contact Us</a>
+                <a href="login.html">Login</a>
+            </div>
+
+        </div>
+
+        <div class="footer-bottom">
+            <p>© 2026 FreshBite. All rights reserved.</p>
+        </div>
+
+    </footer>
+
+
+    <!-- TOAST -->
+    <div id="toast" class="toast"></div>
+
+
+    <!-- DATA MUST LOAD FIRST -->
+    <script src="js/data.js"></script>
+
+    <!-- PRODUCT JAVASCRIPT -->
+    <script src="js/product.js"></script>
+
+</body>
+</html>

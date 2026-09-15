@@ -1,0 +1,484 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Contact Us - FreshBite</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #fff8f0;
+            color: #2d1b12;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid #eee;
+            padding: 18px 6%;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 26px;
+            font-weight: bold;
+            color: #ff6b35;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 18px;
+            flex-wrap: wrap;
+        }
+
+        nav a {
+            font-weight: 600;
+        }
+
+        nav a:hover {
+            color: #ff6b35;
+        }
+
+        .cart-link {
+            background: #ff6b35;
+            color: white;
+            padding: 9px 14px;
+            border-radius: 20px;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: auto;
+            padding: 50px 20px;
+        }
+
+        .page-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .page-title .icon {
+            font-size: 55px;
+            margin-bottom: 10px;
+        }
+
+        .page-title h1 {
+            font-size: 40px;
+            margin-bottom: 8px;
+        }
+
+        .page-title h1 span {
+            color: #ff6b35;
+        }
+
+        .page-title p {
+            color: #666;
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 0.8fr 1.2fr;
+            gap: 25px;
+        }
+
+        .card {
+            background: white;
+            padding: 30px;
+            border-radius: 20px;
+            box-shadow: 0 5px 20px rgba(45, 27, 18, 0.08);
+        }
+
+        .card h2 {
+            margin-bottom: 20px;
+        }
+
+        .contact-item {
+            display: flex;
+            gap: 15px;
+            padding: 17px 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .contact-item:last-child {
+            border-bottom: none;
+        }
+
+        .contact-icon {
+            font-size: 25px;
+        }
+
+        .contact-item strong {
+            display: block;
+            margin-bottom: 3px;
+        }
+
+        .contact-item span {
+            color: #666;
+            font-size: 14px;
+        }
+
+        .form-group {
+            margin-bottom: 17px;
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 7px;
+        }
+
+        input,
+        textarea,
+        select {
+            width: 100%;
+            padding: 13px 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            font-family: inherit;
+            font-size: 15px;
+            outline: none;
+        }
+
+        input:focus,
+        textarea:focus,
+        select:focus {
+            border-color: #ff6b35;
+        }
+
+        textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+
+        button {
+            width: 100%;
+            border: none;
+            background: #ff6b35;
+            color: white;
+            padding: 14px;
+            border-radius: 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #e85b2a;
+        }
+
+        .success-message {
+            display: none;
+            background: #e9f8ee;
+            color: #23733c;
+            padding: 14px;
+            border-radius: 10px;
+            margin-bottom: 18px;
+            text-align: center;
+            font-weight: bold;
+        }
+
+        .success-message.show {
+            display: block;
+        }
+
+        .faq {
+            margin-top: 25px;
+        }
+
+        .faq h2 {
+            margin-bottom: 15px;
+        }
+
+        .faq-item {
+            background: white;
+            padding: 18px;
+            border-radius: 12px;
+            margin-bottom: 10px;
+        }
+
+        .faq-item h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+
+        .faq-item p {
+            color: #666;
+            font-size: 14px;
+        }
+
+        @media (max-width: 750px) {
+            .navbar {
+                flex-direction: column;
+            }
+
+            nav {
+                justify-content: center;
+            }
+
+            .page-title h1 {
+                font-size: 32px;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <div class="navbar">
+
+        <a href="index.html" class="logo">
+            🍽️ FreshBite
+        </a>
+
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="restaurants.html">Restaurants</a>
+            <a href="offers.html">Offers</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+            <a href="wishlist.html">Wishlist</a>
+
+            <a href="cart.html" class="cart-link">
+                🛒 Cart (<span id="cart-count">0</span>)
+            </a>
+        </nav>
+
+    </div>
+</header>
+
+<main>
+
+    <section class="page-title">
+
+        <div class="icon">📞</div>
+
+        <h1>
+            Contact <span>FreshBite</span>
+        </h1>
+
+        <p>
+            Have a question or feedback? We'd love to hear from you.
+        </p>
+
+    </section>
+
+    <div class="contact-grid">
+
+        <section class="card">
+
+            <h2>Get In Touch</h2>
+
+            <div class="contact-item">
+
+                <div class="contact-icon">📧</div>
+
+                <div>
+                    <strong>Email</strong>
+                    <span>support@freshbite.example</span>
+                </div>
+
+            </div>
+
+            <div class="contact-item">
+
+                <div class="contact-icon">📱</div>
+
+                <div>
+                    <strong>Phone</strong>
+                    <span>+91 98765 43210</span>
+                </div>
+
+            </div>
+
+            <div class="contact-item">
+
+                <div class="contact-icon">📍</div>
+
+                <div>
+                    <strong>Location</strong>
+                    <span>FreshBite Food Delivery</span>
+                </div>
+
+            </div>
+
+            <div class="contact-item">
+
+                <div class="contact-icon">🕐</div>
+
+                <div>
+                    <strong>Support Hours</strong>
+                    <span>Monday - Sunday, 9:00 AM - 10:00 PM</span>
+                </div>
+
+            </div>
+
+        </section>
+
+        <section class="card">
+
+            <h2>Send Us a Message</h2>
+
+            <div id="success-message" class="success-message">
+                ✅ Thank you! Your message has been submitted successfully.
+            </div>
+
+            <form id="contact-form">
+
+                <div class="form-group">
+                    <label for="name">Your Name</label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Enter your name"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+
+                    <input
+                        type="email"
+                        id="email"
+                        placeholder="Enter your email"
+                        required
+                    >
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+
+                    <select id="subject" required>
+                        <option value="">Select a subject</option>
+                        <option value="order">Order Help</option>
+                        <option value="restaurant">Restaurant Question</option>
+                        <option value="payment">Payment Issue</option>
+                        <option value="feedback">Feedback</option>
+                        <option value="other">Other</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+
+                    <textarea
+                        id="message"
+                        placeholder="Write your message..."
+                        required
+                    ></textarea>
+                </div>
+
+                <button type="submit">
+                    Send Message ✉️
+                </button>
+
+            </form>
+
+        </section>
+
+    </div>
+
+    <section class="faq">
+
+        <h2>Frequently Asked Questions</h2>
+
+        <div class="faq-item">
+            <h3>How do I place an order?</h3>
+
+            <p>
+                Choose a restaurant, select your food, add it to
+                your cart, and complete the checkout form.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <h3>Can I track my order?</h3>
+
+            <p>
+                Yes. After checkout, use the Track Order option
+                to see the simulated order progress.
+            </p>
+        </div>
+
+        <div class="faq-item">
+            <h3>How do coupons work?</h3>
+
+            <p>
+                Enter an available coupon code during checkout.
+                Eligible discounts will automatically be applied
+                to your order.
+            </p>
+        </div>
+
+    </section>
+
+</main>
+
+<script>
+    function updateCartCount() {
+        const cart =
+            JSON.parse(localStorage.getItem("freshBiteCart")) || [];
+
+        const count = cart.reduce((total, item) => {
+            return total + Number(item.quantity || 0);
+        }, 0);
+
+        const cartCount = document.getElementById("cart-count");
+
+        if (cartCount) {
+            cartCount.textContent = count;
+        }
+    }
+
+    const contactForm =
+        document.getElementById("contact-form");
+
+    const successMessage =
+        document.getElementById("success-message");
+
+    contactForm.addEventListener("submit", function(event) {
+
+        event.preventDefault();
+
+        successMessage.classList.add("show");
+
+        contactForm.reset();
+
+        setTimeout(() => {
+            successMessage.classList.remove("show");
+        }, 5000);
+    });
+
+    updateCartCount();
+</script>
+
+</body>
+</html>

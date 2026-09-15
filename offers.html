@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Offers | FreshBite</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #FFF8F0;
+            color: #2D1B12;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            background: white;
+            border-bottom: 1px solid #eee;
+            padding: 16px 5%;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #FF6B35;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+            align-items: center;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+
+        .cart-link {
+            background: #FF6B35;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 20px;
+        }
+
+        .hero {
+            text-align: center;
+            padding: 65px 20px 40px;
+        }
+
+        .hero h1 {
+            font-size: 42px;
+            margin-bottom: 10px;
+        }
+
+        .hero h1 span {
+            color: #FF6B35;
+        }
+
+        .hero p {
+            color: #777;
+            font-size: 17px;
+        }
+
+        .offers-container {
+            max-width: 1000px;
+            margin: 0 auto 70px;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 25px;
+        }
+
+        .offer-card {
+            background: white;
+            border-radius: 18px;
+            padding: 30px;
+            box-shadow: 0 6px 20px rgba(45, 27, 18, 0.08);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .offer-card::after {
+            content: "🎟️";
+            position: absolute;
+            right: 20px;
+            top: 20px;
+            font-size: 45px;
+            opacity: 0.15;
+        }
+
+        .offer-icon {
+            font-size: 42px;
+            margin-bottom: 15px;
+        }
+
+        .offer-card h2 {
+            margin-bottom: 8px;
+        }
+
+        .offer-card p {
+            color: #666;
+            margin-bottom: 15px;
+        }
+
+        .coupon {
+            display: inline-block;
+            background: #FFF0E7;
+            color: #FF6B35;
+            border: 1px dashed #FF6B35;
+            padding: 9px 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-bottom: 15px;
+        }
+
+        .offer-condition {
+            font-size: 13px;
+            color: #777;
+            margin-bottom: 20px;
+        }
+
+        .shop-btn {
+            display: inline-block;
+            background: #FF6B35;
+            color: white;
+            padding: 11px 18px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .shop-btn:hover {
+            background: #e95725;
+        }
+
+        .tips {
+            max-width: 1000px;
+            margin: 0 auto 60px;
+            padding: 0 20px;
+        }
+
+        .tips-box {
+            background: #2D1B12;
+            color: white;
+            border-radius: 18px;
+            padding: 30px;
+        }
+
+        .tips-box h2 {
+            margin-bottom: 15px;
+        }
+
+        .tips-box ul {
+            padding-left: 20px;
+        }
+
+        .tips-box li {
+            margin-bottom: 8px;
+        }
+
+        footer {
+            background: #2D1B12;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        @media (max-width: 700px) {
+
+            .navbar {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+
+            .hero h1 {
+                font-size: 34px;
+            }
+
+            .offers-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            🍴 FreshBite
+        </a>
+
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="restaurants.html">Restaurants</a>
+            <a href="offers.html">Offers</a>
+            <a href="wishlist.html">Wishlist</a>
+            <a href="account.html">Account</a>
+            <a href="cart.html" class="cart-link">
+                🛒 Cart
+            </a>
+        </div>
+
+    </nav>
+</header>
+
+
+<section class="hero">
+
+    <h1>
+        FreshBite <span>Offers</span> 🎉
+    </h1>
+
+    <p>
+        Save more while enjoying your favorite meals.
+    </p>
+
+</section>
+
+
+<section class="offers-container">
+
+    <div class="offer-card">
+
+        <div class="offer-icon">
+            🔥
+        </div>
+
+        <h2>Welcome Discount</h2>
+
+        <p>
+            Get 10% off your order with our welcome coupon.
+        </p>
+
+        <div class="coupon">
+            WELCOME10
+        </div>
+
+        <div class="offer-condition">
+            Minimum order: ₹300<br>
+            Maximum discount: ₹100
+        </div>
+
+        <a
+            href="restaurants.html"
+            class="shop-btn"
+        >
+            Order Now
+        </a>
+
+    </div>
+
+
+    <div class="offer-card">
+
+        <div class="offer-icon">
+            💰
+        </div>
+
+        <h2>Flat ₹20 Off</h2>
+
+        <p>
+            Enjoy an instant ₹20 discount on your meal.
+        </p>
+
+        <div class="coupon">
+            FRESH20
+        </div>
+
+        <div class="offer-condition">
+            Minimum order: ₹200<br>
+            Flat ₹20 discount
+        </div>
+
+        <a
+            href="restaurants.html"
+            class="shop-btn"
+        >
+            Order Now
+        </a>
+
+    </div>
+
+</section>
+
+
+<section class="tips">
+
+    <div class="tips-box">
+
+        <h2>💡 How to use a coupon</h2>
+
+        <ul>
+            <li>Choose your favorite restaurant and food.</li>
+            <li>Add items worth the required minimum order.</li>
+            <li>Go to Checkout.</li>
+            <li>Enter your coupon code in the coupon box.</li>
+            <li>Click Apply and enjoy your savings!</li>
+        </ul>
+
+    </div>
+
+</section>
+
+
+<footer>
+    <p>
+        © 2026 FreshBite. Delicious food, delivered with love. ❤️
+    </p>
+</footer>
+
+</body>
+</html>

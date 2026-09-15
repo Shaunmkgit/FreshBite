@@ -1,0 +1,425 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Wishlist | FreshBite</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #FFF8F0;
+            color: #2D1B12;
+            line-height: 1.6;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        header {
+            background: #ffffff;
+            border-bottom: 1px solid #eee;
+            padding: 16px 5%;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        .navbar {
+            max-width: 1200px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 20px;
+        }
+
+        .logo {
+            font-size: 28px;
+            font-weight: bold;
+            color: #FF6B35;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 22px;
+        }
+
+        .nav-links a {
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: #FF6B35;
+        }
+
+        .cart-link {
+            background: #FF6B35;
+            color: white;
+            padding: 8px 14px;
+            border-radius: 20px;
+        }
+
+        .cart-count {
+            background: white;
+            color: #FF6B35;
+            padding: 2px 7px;
+            border-radius: 50%;
+            margin-left: 4px;
+            font-size: 12px;
+        }
+
+        .page-header {
+            text-align: center;
+            padding: 50px 20px 30px;
+        }
+
+        .page-header h1 {
+            font-size: 38px;
+            margin-bottom: 8px;
+        }
+
+        .page-header p {
+            color: #777;
+        }
+
+        .wishlist-container {
+            max-width: 1200px;
+            margin: 0 auto 70px;
+            padding: 0 20px;
+        }
+
+        .wishlist-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+        }
+
+        .wishlist-card {
+            background: white;
+            border-radius: 16px;
+            overflow: hidden;
+            box-shadow: 0 5px 20px rgba(45, 27, 18, 0.08);
+            transition: transform 0.2s ease;
+        }
+
+        .wishlist-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .food-image {
+            height: 210px;
+            background: #FFF0E7;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .food-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .emoji-fallback {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 75px;
+        }
+
+        .remove-button {
+            position: absolute;
+            top: 12px;
+            right: 12px;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            border: none;
+            background: white;
+            color: #e53935;
+            font-size: 20px;
+            cursor: pointer;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.15);
+        }
+
+        .remove-button:hover {
+            background: #e53935;
+            color: white;
+        }
+
+        .wishlist-content {
+            padding: 20px;
+        }
+
+        .restaurant-name {
+            color: #FF6B35;
+            font-size: 13px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .wishlist-content h2 {
+            font-size: 21px;
+            margin-bottom: 8px;
+        }
+
+        .description {
+            color: #777;
+            font-size: 14px;
+            min-height: 44px;
+            margin-bottom: 12px;
+        }
+
+        .food-meta {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+            margin-bottom: 15px;
+        }
+
+        .tag {
+            background: #FFF0E7;
+            color: #FF6B35;
+            padding: 4px 9px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+        }
+
+        .price {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .card-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .card-actions a,
+        .card-actions button {
+            flex: 1;
+            text-align: center;
+            padding: 10px 12px;
+            border-radius: 8px;
+            font-weight: 600;
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .details-button {
+            background: #FF6B35;
+            color: white;
+            border: none;
+        }
+
+        .details-button:hover {
+            background: #e95725;
+        }
+
+        .cart-button {
+            background: #2D1B12;
+            color: white;
+            border: none;
+        }
+
+        .cart-button:hover {
+            background: #4a2d20;
+        }
+
+        .empty-wishlist {
+            text-align: center;
+            background: white;
+            border-radius: 16px;
+            padding: 70px 20px;
+            box-shadow: 0 5px 20px rgba(45, 27, 18, 0.08);
+        }
+
+        .empty-icon {
+            font-size: 70px;
+            margin-bottom: 15px;
+        }
+
+        .empty-wishlist h2 {
+            margin-bottom: 10px;
+        }
+
+        .empty-wishlist p {
+            color: #777;
+            margin-bottom: 25px;
+        }
+
+        .browse-button {
+            display: inline-block;
+            background: #FF6B35;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+
+        .browse-button:hover {
+            background: #e95725;
+        }
+
+        .toast {
+            position: fixed;
+            right: 20px;
+            bottom: 20px;
+            background: #2D1B12;
+            color: white;
+            padding: 13px 18px;
+            border-radius: 8px;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            opacity: 0;
+            transform: translateY(20px);
+            pointer-events: none;
+            transition: all 0.3s ease;
+            z-index: 999;
+        }
+
+        .toast.show {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        footer {
+            background: #2D1B12;
+            color: white;
+            text-align: center;
+            padding: 25px 20px;
+        }
+
+        @media (max-width: 900px) {
+            .wishlist-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .navbar {
+                flex-direction: column;
+            }
+
+            .nav-links {
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 12px;
+            }
+
+            .page-header h1 {
+                font-size: 30px;
+            }
+
+            .wishlist-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .food-image {
+                height: 230px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+<header>
+
+    <nav class="navbar">
+
+        <a href="index.html" class="logo">
+            🍴 FreshBite
+        </a>
+
+        <div class="nav-links">
+
+            <a href="index.html">
+                Home
+            </a>
+
+            <a href="restaurants.html">
+                Restaurants
+            </a>
+
+            <a href="offers.html">
+                Offers
+            </a>
+
+            <a href="wishlist.html">
+                Wishlist
+            </a>
+
+            <a href="account.html">
+                Account
+            </a>
+
+            <a href="cart.html" class="cart-link">
+                🛒 Cart
+                <span id="cart-count" class="cart-count">
+                    0
+                </span>
+            </a>
+
+        </div>
+
+    </nav>
+
+</header>
+
+
+<section class="page-header">
+
+    <h1>
+        ❤️ My Wishlist
+    </h1>
+
+    <p>
+        Your favorite food, saved in one place.
+    </p>
+
+</section>
+
+
+<main class="wishlist-container">
+
+    <div id="wishlist-container">
+        <!-- Wishlist items are generated by JavaScript -->
+    </div>
+
+</main>
+
+
+<div id="toast" class="toast"></div>
+
+
+<footer>
+
+    <p>
+        © 2026 FreshBite. Delicious food, delivered with love. ❤️
+    </p>
+
+</footer>
+
+
+<script src="js/data.js"></script>
+<script src="js/wishlist.js"></script>
+
+</body>
+
+</html>

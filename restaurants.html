@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurants - FreshBite</title>
+
+    <link rel="stylesheet" href="css/style.css">
+
+    <style>
+        .restaurants-page {
+            background: #fff8f0;
+            min-height: 100vh;
+        }
+
+        .restaurants-title {
+            text-align: center;
+            padding: 45px 20px 25px;
+        }
+
+        .restaurants-title h1 {
+            color: #2d1b12;
+            margin-bottom: 8px;
+        }
+
+        .restaurants-title p {
+            color: #777;
+        }
+
+        .restaurant-controls {
+            max-width: 1100px;
+            margin: 0 auto 35px;
+            padding: 0 20px;
+        }
+
+        #restaurant-search {
+            width: 100%;
+            box-sizing: border-box;
+            padding: 14px 18px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            font-size: 15px;
+        }
+
+        .filter-row {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .restaurant-filter {
+            border: 1px solid #ddd;
+            background: white;
+            padding: 9px 15px;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .restaurant-filter.active {
+            background: #ff6b35;
+            color: white;
+            border-color: #ff6b35;
+        }
+
+        #restaurant-sort {
+            margin-top: 15px;
+            padding: 9px 12px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            background: white;
+        }
+
+        .restaurants-section {
+            max-width: 1100px;
+            margin: auto;
+            padding: 0 20px 60px;
+        }
+
+        .restaurants-section h2 {
+            color: #2d1b12;
+            margin-bottom: 20px;
+        }
+
+        .restaurants-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 22px;
+        }
+
+        .restaurant-card {
+            background: white;
+            border-radius: 14px;
+            overflow: hidden;
+            box-shadow: 0 4px 16px rgba(45, 27, 18, 0.08);
+            transition: 0.2s;
+        }
+
+        .restaurant-card:hover {
+            transform: translateY(-4px);
+        }
+
+        .restaurant-card-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .restaurant-card-body {
+            padding: 17px;
+        }
+
+        .restaurant-card-body h3 {
+            margin: 0 0 6px;
+            color: #2d1b12;
+        }
+
+        .restaurant-cuisine {
+            color: #777;
+            font-size: 14px;
+            margin-bottom: 12px;
+        }
+
+        .restaurant-meta {
+            display: flex;
+            justify-content: space-between;
+            font-size: 13px;
+            color: #666;
+            margin-bottom: 12px;
+        }
+
+        .restaurant-offer {
+            color: #ff6b35;
+            font-size: 12px;
+            font-weight: bold;
+            margin-bottom: 12px;
+        }
+
+        .view-menu-btn {
+            width: 100%;
+            padding: 11px;
+            border: none;
+            border-radius: 8px;
+            background: #ff6b35;
+            color: white;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        @media (max-width: 900px) {
+            .restaurants-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 600px) {
+            .restaurants-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+
+<body class="restaurants-page">
+
+<header>
+    <nav class="navbar">
+        <div class="logo">
+            <a href="index.html">Fresh<span>Bite</span></a>
+        </div>
+
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="restaurants.html" class="active">Restaurants</a></li>
+            <li><a href="index.html#offers">Offers</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+            <li><a href="login.html">Login</a></li>
+            <li><a href="wishlist.html">❤️ Wishlist</a></li>
+            <li>
+                <a href="cart.html">
+                    🛒 Cart <span id="cart-count">0</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+
+<section class="restaurants-title">
+    <h1>Choose a Restaurant</h1>
+    <p>Delicious food from restaurants you'll love.</p>
+</section>
+
+<section class="restaurant-controls">
+
+    <input
+        type="text"
+        id="restaurant-search"
+        placeholder="Search restaurants..."
+    >
+
+    <div class="filter-row">
+        <button class="restaurant-filter active" data-cuisine="all">All</button>
+        <button class="restaurant-filter" data-cuisine="Indian">Indian</button>
+        <button class="restaurant-filter" data-cuisine="Italian">Italian</button>
+        <button class="restaurant-filter" data-cuisine="American">American</button>
+        <button class="restaurant-filter" data-cuisine="Asian">Asian</button>
+    </div>
+
+    <select id="restaurant-sort">
+        <option value="default">Recommended</option>
+        <option value="rating">Highest Rated</option>
+        <option value="delivery">Fastest Delivery</option>
+        <option value="price-low">Price: Low to High</option>
+        <option value="price-high">Price: High to Low</option>
+    </select>
+
+</section>
+
+<section class="restaurants-section">
+
+    <h2>Popular Restaurants</h2>
+
+    <div id="restaurants-grid" class="restaurants-grid"></div>
+
+</section>
+
+<script src="js/data.js"></script>
+<script src="js/restaurants.js"></script>
+
+</body>
+</html>
