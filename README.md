@@ -10,7 +10,7 @@ This project was created using HTML5, CSS3, and JavaScript.
 
 Add your deployed website link here after deployment:
 
-**Live Website:** `YOUR_GITHUB_PAGES_LINK`
+**Live Website:** ` https://shaunmkgit.github.io/FreshBite/ `
 
 ---
 
